@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# php 启动
+basedir=/home/ki/https
+$basedir/php/bin/php $1
+# composer.phar create-project laravel/laravel=5.5.* laravel
+

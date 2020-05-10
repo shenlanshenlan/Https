@@ -1,0 +1,106 @@
+#!/bin/bash
+# config
+basedir=/home/ki/https
+origindir=/home/https
+DBuser=root
+DBpass=xingke
+
+
+#MD
+md="This nginx server script command \n";
+md+="-start: start the nginx and php-fpm\n";
+md+="-restart: stop and start the server\n";
+md+="-stop: server\n"
+md+="\n"
+md+="pushDB: Export the local database table to the server and pour it into the remote server's database."
+
+#function 
+run(){
+sudo $basedir/php/sbin/php-fpm -p $basedir/php
+sudo $basedir/nginx/sbin/nginx -p $basedir/nginx
+}
+# 用变量保存文件的输出
+
+#停止
+stop(){
+ nginx=`pidof 'nginx'`  #获取程序的输出值（反引号） pidof 获取程序的进程id
+ sudo kill   $nginx
+ phpfmp=`pidof 'php-fpm'` 
+ sudo kill   $phpfmp
+}
+
+#重启服务器
+restart(){
+ stop   
+ run
+}
+
+updatemysql(){
+tmp=$PWD/$1_tmp.sql  #临时文件名
+origin_tmp=$origindir/$1_tmp.sql
+mysqldump  -u$DBuser -p$DBpass $1 > $tmp
+sudo scp  $tmp root@xingke.store:$origin_tmp
+ssh  root@xingke.store <<EOF
+mysql -uroot -pxingke 
+use ${1}
+source  ${origin_tmp}
+rm ${origin_tmp}
+exit
+exit
+EOF
+rm $tmp
+echo "------ok-----"
+}
+
+pushWORK(){
+cd $basedir/www/$1; #进入项目目录
+git add -A
+git commit -m 'ki'
+git push origin master
+ssh  root@xingke.store  <<EFO
+cd $origindir/www/$1;
+git pull origin master
+exit
+EFO
+echo "----OK-----"
+}
+
+
+#------switch----------
+case  $1 in
+ '-start')
+     run
+    ;;
+ '-restart')
+      restart
+    ;;
+ '-stop')
+      stop
+    ;;
+ '-pushDB')
+   if test -z $2
+    then
+      echo "Too few input parameter"
+    else
+     updatemysql $2;
+   fi 
+    ;;
+ '-push')
+   if test -z $2
+    then
+      echo "Too few input parameter"
+    else
+     pushWORK $2;
+   fi 
+    ;;
+
+ '-help')
+    echo -e $md;
+    ;;
+
+#default
+   *)
+    echo "NO PARAMETER"
+    exit
+    ;;
+esac
