@@ -11197,3 +11197,16 @@
 2018/11/29 18:51:31 [error] 2022#2022: *130 open() "/home/ki/https/www/favicon.ico" failed (2: No such file or directory), client: 192.168.0.105, server: 127.0.0.1, request: "GET /favicon.ico HTTP/1.1", host: "192.168.0.106"
 2018/12/01 00:47:30 [error] 3390#3390: *863 open() "/home/ki/https/www/favicon.ico" failed (2: No such file or directory), client: 127.0.0.1, server: 127.0.0.1, request: "GET /favicon.ico HTTP/1.1", host: "killer.store"
 2018/12/01 00:47:30 [error] 3390#3390: *865 open() "/home/ki/https/www/favicon.ico" failed (2: No such file or directory), client: 127.0.0.1, server: 127.0.0.1, request: "GET /favicon.ico HTTP/1.1", host: "killer.store"
+2020/05/10 09:34:40 [error] 2481#2481: *1 open() "/home/ki/https/www/favicon.ico" failed (2: No such file or directory), client: 127.0.0.1, server: 127.0.0.1, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/"
+2020/05/10 09:34:49 [error] 2481#2481: *7 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 127.0.0.1, server: 127.0.0.1, request: "GET /design/design.php HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "127.0.0.1", referrer: "http://127.0.0.1/"
+2021/06/15 11:29:32 [emerg] 1878#1878: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2021/06/15 11:29:32 [emerg] 1878#1878: bind() to 0.0.0.0:443 failed (98: Address already in use)
+2021/06/15 11:29:32 [emerg] 1878#1878: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2021/06/15 11:29:32 [emerg] 1878#1878: bind() to 0.0.0.0:443 failed (98: Address already in use)
+2021/06/15 11:29:32 [emerg] 1878#1878: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2021/06/15 11:29:32 [emerg] 1878#1878: bind() to 0.0.0.0:443 failed (98: Address already in use)
+2021/06/15 11:29:32 [emerg] 1878#1878: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2021/06/15 11:29:32 [emerg] 1878#1878: bind() to 0.0.0.0:443 failed (98: Address already in use)
+2021/06/15 11:29:32 [emerg] 1878#1878: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2021/06/15 11:29:32 [emerg] 1878#1878: bind() to 0.0.0.0:443 failed (98: Address already in use)
+2021/06/15 11:29:32 [emerg] 1878#1878: still could not bind()
